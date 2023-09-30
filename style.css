@@ -1,0 +1,9 @@
+.table.table-bordered td,
+.table.table-bordered th {
+    border: none;
+}
+
+#searchBar {
+    width: 50%;
+    margin-left: 4.5rem;
+}
