@@ -5,5 +5,30 @@
 
 #searchBar {
     width: 50%;
-    margin-left: 4.5rem;
+    margin-left: 20rem;
+}
+
+#searchbarContainer {
+    margin-top: 3rem;
+}
+
+#addReview {
+    right: auto;
+    margin-right: 1rem;
+}
+
+.small-text {
+    font-size: small;
+}
+
+.centered {
+    text-align: center;
+}
+
+#mainTitle {
+    margin: 4rem;
+}
+
+#brand {
+    margin-left: 1rem;
 }

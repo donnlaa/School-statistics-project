@@ -19,7 +19,7 @@
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="brand">
         <a class="navbar-brand" href="#">
             <i class="fa fa-graduation-cap"></i>
             Kam na školu?
@@ -29,7 +29,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto"> <!-- Use 'mr-auto' to push the list items to the left -->
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Vysoké školy</a>
                 </li>
@@ -40,11 +40,37 @@
                     <a class="nav-link" href="#">Pre rodičov</a>
                 </li>
             </ul>
+            <button id="addReview" type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+                data-bs-target="#addReviewModal">Pridať skúsenosť</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="addReviewModal" tabindex="-1" role="dialog"
+                aria-labelledby="addReviewModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addReviewModalLongTitle">Modal title</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Renamed button text -->
         </div>
     </nav>
 
+
     <!-- Main Content -->
-    <div class="container">
+    <div class="container centered" id="mainTitle">
         <div class="row">
             <div class="col-md-12">
                 <h1>Správny výber školy je najlepšia investícia.</h1>
@@ -52,40 +78,58 @@
                     Jednoducho zistite, ktorá škola je pre Vás! </p>
             </div>
         </div>
-    </div>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
 
+        <!--Search bar-->
+        <form class="form-inline" id="searchbarContainer">
+            <input class="form-control mr-sm-2" type="search" placeholder="Názov školy" aria-label="Search"
+                id="searchBar">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i>
+                Hľadaj</button>
+        </form>
+    </div>
     <!-- Bootstrap Table -->
     <div class="container mt-4">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Column 1</th>
-                    <th>Column 2</th>
-                    <th>Column 3</th>
-                    <th>Column 4</th>
+                    <th class="bg-light">Názov školy<br><span class="small-text">Odbor</span></th>
+                    <th class="bg-light">Plat<br><span class="small-text">Plat na hodinu</span></th>
+                    <th class="bg-light">Práca<br><span class="small-text">Spoločnosť/Firma</span></th>
+                    <th class="bg-light">Hodnotenie školy<br><span class="small-text">Hodnotenie v %</span></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Data 1</td>
-                    <td>Data 2</td>
-                    <td>Data 3</td>
-                    <td>Data 4</td>
+                    <td>Data 1<br><span class="small-text">Line 2 of Data 1</span></td>
+                    <td>Data 2<br><span class="small-text">Line 2 of Data 2</span></td>
+                    <td>Data 3<br><span class="small-text">Line 2 of Data 3</span></td>
+                    <td>Data 4<br><span class="small-text">Line 2 of Data 4</span></td>
                 </tr>
                 <tr>
-                    <td>Data 1</td>
-                    <td>Data 2</td>
-                    <td>Data 3</td>
-                    <td>Data 4</td>
+                    <td>Data 1<br><span class="small-text">Line 2 of Data 1</span></td>
+                    <td>Data 2<br><span class="small-text">Line 2 of Data 2</span></td>
+                    <td>Data 3<br><span class="small-text">Line 2 of Data 3</span></td>
+                    <td>Data 4<br><span class="small-text">Line 2 of Data 4</span></td>
+                </tr>
+                <tr>
+                    <td>Data 1<br><span class="small-text">Line 2 of Data 1</span></td>
+                    <td>Data 2<br><span class="small-text">Line 2 of Data 2</span></td>
+                    <td>Data 3<br><span class="small-text">Line 2 of Data 3</span></td>
+                    <td>Data 4<br><span class="small-text">Line 2 of Data 4</span></td>
+                </tr>
+                <tr>
+                    <td>Data 1<br><span class="small-text">Line 2 of Data 1</span></td>
+                    <td>Data 2<br><span class="small-text">Line 2 of Data 2</span></td>
+                    <td>Data 3<br><span class="small-text">Line 2 of Data 3</span></td>
+                    <td>Data 4<br><span class="small-text">Line 2 of Data 4</span></td>
                 </tr>
                 <!-- Add more rows as needed -->
             </tbody>
         </table>
     </div>
+
+
+
 
     <!-- Optional: Footer -->
     <footer class="footer">
@@ -96,6 +140,12 @@
 
     <!-- Include Bootstrap JavaScript from a CDN or locally -->
     <!-- In your HTML file -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
