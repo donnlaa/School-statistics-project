@@ -19,20 +19,29 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = getDatabase(app);
 
 // Reference to the "university" node in the database
-const db = getDatabase();
+const universitiesRef = ref(db, 'university');
 
-// Reference to the "university" node in the database
-const universityRef = ref(db, 'university');
+// Reference to the <select> element in your HTML
+const universitySelect = document.getElementById('universitySelect');
 
-// Retrieve the data and log it
-get(universityRef)
+// Retrieve the university data and populate the <select>
+get(universitiesRef)
   .then((snapshot) => {
     if (snapshot.exists()) {
-      const universityData = snapshot.val();
-      console.log("University Data:", universityData);
+      const universitiesData = snapshot.val();
+      for (const universityId in universitiesData) {
+        if (universitiesData.hasOwnProperty(universityId)) {
+          const university = universitiesData[universityId];
+          const universityName = university.name;
+          const option = document.createElement('option');
+          option.value = universityId; // Set the value to the university_id
+          option.textContent = universityName;
+          universitySelect.appendChild(option);
+        }
+      }
     } else {
       console.log("University data does not exist.");
     }
