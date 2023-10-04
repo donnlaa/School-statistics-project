@@ -49,3 +49,6 @@ get(universitiesRef)
   .catch((error) => {
     console.error("Error getting university data:", error);
   });
+
+  
+  

@@ -55,7 +55,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form id="ratingForm">
                                 <div class="form-group">
                                     <label for="universitySelect">Názov vysokej školy</label>
                                     <select class="custom-select" id="universitySelect">
@@ -66,7 +66,7 @@
                                 <div class="form-group">
                                     <label for="majorSelect">Odbor</label>
                                     <select class="custom-select" id="majorSelect">
-                                        <option selected>Choose...</option>
+                                        <option selected>Vyberte</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
@@ -76,10 +76,9 @@
                                 <div class="form-group">
                                     <label for="employmentSelect">Zamestnanie v odbore</label>
                                     <select class="custom-select" id="employmentSelect">
-                                        <option selected>Choose...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <option selected>Zamestnali ste sa vo vyštudovanom odbore?</option>
+                                        <option value="1">Áno</option>
+                                        <option value="2">Nie</option>
                                     </select>
                                 </div>
 
@@ -88,12 +87,27 @@
                                     <input type="number" class="form-control" id="price" name="price"
                                         placeholder="Plat €" min="0" step="100">
                                 </div>
+                                <div class="form-group">
+                                    <label for="rating">Ako by ste ohodnotili túto školu?</label>
+                                    <div class="rating">
+                                        <input type="radio" id="star5" name="rating" value="100"><label
+                                            for="star5"></label>
+                                        <input type="radio" id="star4" name="rating" value="80"><label
+                                            for="star4"></label>
+                                        <input type="radio" id="star3" name="rating" value="60"><label
+                                            for="star3"></label>
+                                        <input type="radio" id="star2" name="rating" value="40"><label
+                                            for="star2"></label>
+                                        <input type="radio" id="star1" name="rating" value="20"><label
+                                            for="star1"></label>
+                                    </div>
+                                </div>
                             </form>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavrieť</button>
-                            <button type="submit" class="btn btn-primary">Pridať</button>
+                            <button type="submit" id="saveButton" class="btn btn-primary">Pridať</button>
                         </div>
                     </div>
                 </div>
@@ -184,7 +198,38 @@
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./main.js"></script>
     </script>
+    <script>
+        // Ensure the document is ready before running JavaScript
+        $(document).ready(function () {
+            // Function to save form data as JSON
+            function saveFormDataAsJSON() {
+                // Capture form input values
+                var university = document.getElementById("universitySelect").value;
+                var major = document.getElementById("majorSelect").value;
+                var employment = document.getElementById("employmentSelect").value;
+                var price = document.getElementById("price").value;
+                var rating = document.querySelector(".rating input:checked").value;
 
+                // Create JSON object
+                var jsonData = {
+                    "name": university,
+                    "odbor": major,
+                    "work": employment,
+                    "money": price,
+                    "raing": rating
+                };
+
+                // Convert JSON to string
+                var jsonString = JSON.stringify(jsonData);
+
+                // You can now use the jsonString as needed, e.g., send it to a server or save it locally
+                console.log(jsonString);
+            }
+
+            // Add click event listener to the "Pridať" button
+            document.getElementById("saveButton").addEventListener("click", saveFormDataAsJSON);
+        });
+    </script>
 </body>
 
 </html>
