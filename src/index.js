@@ -40,9 +40,9 @@ function populateTable() {
 
       nameCell.innerHTML = data.name;
       majorCell.innerHTML = data.odbor;
-      employmentCell.innerHTML = data.work;
-      priceCell.innerHTML = data.money;
-      ratingCell.innerHTML = data.rating;
+      employmentCell.innerHTML = generateValue(data.work);
+      priceCell.innerHTML = data.money + " €";
+      ratingCell.innerHTML = generateStarRating(data.rating);
     });
   });
 }
@@ -86,3 +86,25 @@ $(document).ready(function () {
   // Add click event listener to the "Pridať" button
   document.getElementById("saveButton").addEventListener("click", saveFormDataAsJSON);
 });
+
+function generateStarRating(rating) {
+  const maxRating = 5; // Maximum rating possible (adjust as needed)
+  const starValue = 20; // Value per star (adjust as needed)
+  const totalStars = Math.floor(rating / starValue); // Calculate the number of filled stars
+  let stars = '';
+
+  for (let i = 1; i <= maxRating; i++) {
+    if (i <= totalStars) {
+      stars += '<label>&#9733;</label>'; // Filled star character
+    } else {
+      stars += '<label>&#9734;</label>'; // Empty star character
+    }
+  }
+
+  return stars;
+}
+
+function generateValue(value) {
+  const result = value == 1 ? "Áno" : "Nie";
+  return result;
+}
