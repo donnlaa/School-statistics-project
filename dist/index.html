@@ -60,6 +60,44 @@
                                     <label for="universitySelect">Názov vysokej školy</label>
                                     <select class="custom-select" id="universitySelect">
                                         <option selected>Vyberte...</option>
+                                        <option>Univerzita Pavla Jozefa Šafárika v Košiciach</option>
+                                        <option>Technická univerzita v Košiciach</option>
+                                        <option>Akadémia ozbrojených síl generála Milana Rastislava Štefánika</option>
+                                        <option>Akadémia Policajného zboru</option>
+                                        <option>Akadémia umení v Banská Bystrica</option>
+                                        <option>Bratislavská medzinárodná škola liberálnych štúdií</option>
+                                        <option>Ekonomická univerzita v Bratislave</option>
+                                        <option>Hudobná a umelecká akadémia Jána Albrechta - Banská Štiavnica, s. r. o.,
+                                            odborná vysoká škola</option>
+                                        <option>Katolícka univerzita v Ružomberku</option>
+                                        <option>Paneurópska vysoká škola</option>
+                                        <option>Prešovská univerzita v Prešove</option>
+                                        <option>Slovenská poľnohospodárska univerzita v Nitre</option>
+                                        <option>Slovenská technická univerzita v Bratislave</option>
+                                        <option>Slovenská zdravotnícka univerzita v Bratislave</option>
+                                        <option>Technická univerzita vo Zvolene</option>
+                                        <option>Trenčianska univerzita Alexandra Dubčeka v Trenčíne</option>
+                                        <option>Trnavská univerzita v Trnave</option>
+                                        <option>University College Prague – Vysoká škola mezinárodních vztahů a Vysoká
+                                            škola hotelová a ekonomická s.r.o.</option>
+                                        <option>Univerzita J. Selyeho</option>
+                                        <option>Univerzita Komenského v Bratislave</option>
+                                        <option>Univerzita Konštantína Filozofa v Nitre</option>
+                                        <option>Univerzita Mateja Bela v Banskej Bystrici</option>
+                                        <option>Univerzita sv. Cyrila a Metoda v Trnave</option>
+                                        <option>Univerzita veterinárskeho lekárstva a farmácie v Košiciach</option>
+                                        <option>Vysoká škola bezpečnostného manažérstva v Košiciach</option>
+                                        <option>Vysoká škola Danubius</option>
+                                        <option>Vysoká škola DTI</option>
+                                        <option>Vysoká škola ekonómie a manažmentu v Bratislave</option>
+                                        <option>Vysoká škola manažmentu</option>
+                                        <option>Vysoká škola medzinárodného podnikania ISM Slovakia v Prešove</option>
+                                        <option>Vysoká škola múzických umení v Bratislave</option>
+                                        <option>Vysoká škola výtvarných umení v Bratislave</option>
+                                        <option>Vysoká škola zdravotníctva a sociálnej práce sv. Alžbety v Bratislave,
+                                            n. o.</option>
+                                        <option>Žilinská univerzita v Žiline</option>
+
                                     </select>
                                 </div>
 
@@ -200,35 +238,7 @@
     </script>
     <script>
         // Ensure the document is ready before running JavaScript
-        $(document).ready(function () {
-            // Function to save form data as JSON
-            function saveFormDataAsJSON() {
-                // Capture form input values
-                var university = document.getElementById("universitySelect").value;
-                var major = document.getElementById("majorSelect").value;
-                var employment = document.getElementById("employmentSelect").value;
-                var price = document.getElementById("price").value;
-                var rating = document.querySelector(".rating input:checked").value;
-
-                // Create JSON object
-                var jsonData = {
-                    "name": university,
-                    "odbor": major,
-                    "work": employment,
-                    "money": price,
-                    "raing": rating
-                };
-
-                // Convert JSON to string
-                var jsonString = JSON.stringify(jsonData);
-
-                // You can now use the jsonString as needed, e.g., send it to a server or save it locally
-                console.log(jsonString);
-            }
-
-            // Add click event listener to the "Pridať" button
-            document.getElementById("saveButton").addEventListener("click", saveFormDataAsJSON);
-        });
+        
     </script>
 </body>
 
