@@ -1,12 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, push, set, get } from "firebase/database";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getDatabase, ref, push, set, onValue } from "firebase/database";
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAtyIa8wTickNQFaOzN1Hp0q3YagudERVQ",
   authDomain: "slovak-school-rate.firebaseapp.com",
@@ -21,6 +17,39 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+// Reference to your Firebase Realtime Database
+var universitiesRef = ref(db, "university");
+
+// Function to populate the HTML table with data from Firebase
+function populateTable() {
+  onValue(universitiesRef, (snapshot) => {
+    var universityTable = document.getElementById("universityTable").getElementsByTagName('tbody')[0];
+
+    universityTable.innerHTML = ''; // Clear existing table rows
+
+    snapshot.forEach((childSnapshot) => {
+      var data = childSnapshot.val();
+      var row = universityTable.insertRow(-1);
+
+      // Add data to the table cells
+      var nameCell = row.insertCell(0);
+      var majorCell = row.insertCell(1);
+      var employmentCell = row.insertCell(2);
+      var priceCell = row.insertCell(3);
+      var ratingCell = row.insertCell(4);
+
+      nameCell.innerHTML = data.name;
+      majorCell.innerHTML = data.odbor;
+      employmentCell.innerHTML = data.work;
+      priceCell.innerHTML = data.money;
+      ratingCell.innerHTML = data.rating;
+    });
+  });
+}
+
+// Call the function to populate the table
+populateTable();
+
 // json z formulara
 $(document).ready(function () {
   // Function to save form data as JSON
@@ -33,26 +62,19 @@ $(document).ready(function () {
     var rating = document.querySelector(".rating input:checked").value;
 
     // Create JSON object
-    // Create JSON object
     var jsonData = {
       "name": university,
       "odbor": major,
       "work": employment,
       "money": price,
-      "rating": rating // Fix the typo here
+      "rating": rating
     };
 
-    // You can now use the jsonData as needed, e.g., send it to a server or save it locally
-    console.log(jsonData);
-
     // Push the data to a specific location with a unique 'university_id'
-    var universitiesRef = ref(db, "university"); // Replace "university" with your desired database path
-
-    // Generate a new 'university_id' using Firebase's push method
     var newUniversityRef = push(universitiesRef);
 
     // Set the data under the new 'university_id'
-    set(newUniversityRef, jsonData, function (error) {
+    set(newUniversityRef, jsonData, (error) => {
       if (error) {
         console.error("Data could not be saved." + error);
       } else {
