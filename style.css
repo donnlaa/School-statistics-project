@@ -67,3 +67,7 @@
     /* Filled star character for checked input */
     color: gold;
 }
+
+td>label {
+    color: gold;
+}
