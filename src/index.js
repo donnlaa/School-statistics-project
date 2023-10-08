@@ -108,3 +108,24 @@ function generateValue(value) {
   const result = value == 1 ? "Áno" : "Nie";
   return result;
 }
+
+$(document).ready(function () {
+  $("#searchForm").submit(function (event) {
+    event.preventDefault(); // Prevent form submission and page reload
+    const searchTerm = $("#searchBar").val().toLowerCase();
+
+    // Loop through each row in the table body
+    $("#universityTable tbody tr").each(function () {
+      const row = $(this);
+      const schoolName = row.find("td:first").text().toLowerCase();
+
+      // Check if the school name contains the search term
+      if (schoolName.includes(searchTerm)) {
+        row.show();
+      } else {
+        row.hide();
+      }
+    });
+  });
+});
+
