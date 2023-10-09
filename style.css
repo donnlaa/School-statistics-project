@@ -64,7 +64,6 @@
 
 .rating>input:checked~label:before {
     content: "\2605";
-    /* Filled star character for checked input */
     color: gold;
 }
 
