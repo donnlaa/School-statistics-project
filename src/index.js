@@ -80,9 +80,6 @@ function generateUniversityLink(cleanUniversityName) {
 
 
   }
-  // if (cleanUniversityName == 'Technicka-univerzita-v-Kosiciach') {
-  //   return 'https://www.tuke.sk/wps/portal';
-  // } else return '/dist/' + cleanUniversityName + '.html';
 }
 
 
