@@ -39,7 +39,21 @@ function populateTable() {
       var priceCell = row.insertCell(3);
       var ratingCell = row.insertCell(4);
 
-      nameCell.innerHTML = data.name;
+      // Clean the university name to remove special characters and replace spaces with hyphens
+      var cleanUniversityName = data.name
+        .normalize('NFD') // Normalize accented characters to their non-accented counterparts
+        .replace(/[\u0300-\u036f]/g, '') // Remove combining diacritical marks
+        .replace(/[^\w\s]/gi, '') // Remove special characters
+        .replace(/\s+/g, '-')      // Replace spaces with hyphens
+
+      // Create a link button based on the clean university name
+      var universityNameLink = document.createElement('a');
+      universityNameLink.textContent = data.name;
+      universityNameLink.href = generateUniversityLink(cleanUniversityName); // Call a function to generate the link
+      universityNameLink.style.textDecoration = 'none';
+      // Append the link button to the name cell
+      nameCell.appendChild(universityNameLink);
+
       majorCell.innerHTML = data.odbor;
       employmentCell.innerHTML = generateValue(data.work);
       priceCell.innerHTML = data.money + " €";
@@ -47,6 +61,30 @@ function populateTable() {
     });
   });
 }
+
+// Function to generate the university link based on the clean name
+function generateUniversityLink(cleanUniversityName) {
+
+  switch (cleanUniversityName) {
+    case 'Technicka-univerzita-v-Kosiciach':
+      return 'https://www.tuke.sk/wps/portal';
+
+    case 'Univerzita-Pavla-Jozefa-Safarika-v-Kosiciach':
+      return 'https://www.upjs.sk';
+
+    case 'Akademia-ozbrojenych-sil-generala-Milana-Rastislava-Stefanika':
+      return 'https://www.aos.sk';
+
+    case 'Univerzita-J-Selyeho':
+      return 'https://www.portalvs.sk/sk/vysoka-skola/univerzita-j-selyeho-v-komarne';
+
+
+  }
+  // if (cleanUniversityName == 'Technicka-univerzita-v-Kosiciach') {
+  //   return 'https://www.tuke.sk/wps/portal';
+  // } else return '/dist/' + cleanUniversityName + '.html';
+}
+
 
 // Call the function to populate the table
 populateTable();
